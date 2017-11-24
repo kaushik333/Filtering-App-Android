@@ -13,6 +13,7 @@ import android.util.Log;
 import android.util.Size;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -105,6 +106,8 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
 
     public static int           viewMode = VIEW_MODE_RGBA;
 
+
+
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -147,6 +150,12 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
 
 
 
+    }
+
+    public void Next(View view)
+    {
+        Intent intent =new Intent(this, DispCoord.class);
+        startActivity(intent);
     }
 
     @Override
