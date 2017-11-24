@@ -1,80 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_centerInParent="true"
+    android:background="@drawable/filter">
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RGBA"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="35dp"
-        android:onClick="RGBA"/>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HIST"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="97dp"
-        android:onClick="HIST"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Select the required filter"
+        style = "@style/CustomText"/>
 
     <Button
         android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CANNY"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:onClick="RGBA"
+        android:padding="8dp"
+        android:text="Normal Camera View"
         tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="160dp"
-        android:onClick="CANNY"/>
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SEPTA"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="224dp"
-        android:onClick="SEPTA"/>
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SOBEL"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="282dp"
-        android:onClick="SOBEL"/>
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ZOOM"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="342dp"
-        android:onClick="ZOOM"/>
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PIXELIZE"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="412dp"
-        android:onClick="PIXELIZE"/>
+        tools:layout_editor_absoluteY="35dp" />
 
     <Button
         android:id="@+id/button8"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="POSTERIZE"
+        android:layout_alignTop="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:onClick="HIST"
+        android:padding="8dp"
+        android:text="Histogram Of the Image"
         tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="481dp"
-        android:onClick="POSTERIZE"/>
-</LinearLayout>
+        tools:layout_editor_absoluteY="97dp" />
+
+    <Button
+        android:id="@+id/button9"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button8"
+        android:layout_centerHorizontal="true"
+        android:onClick="SEPTA"
+        android:padding="8dp"
+        android:text="SEPTA"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="224dp" />
+
+    <Button
+        android:id="@+id/button10"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_below="@+id/button8"
+        android:layout_marginTop="41dp"
+        android:onClick="ZOOM"
+        android:padding="8dp"
+        android:text="Zoom into a particular area"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <Button
+        android:id="@+id/button11"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button8"
+        android:layout_below="@+id/button10"
+        android:onClick="SOBEL"
+        android:padding="8dp"
+        android:text="Sobel edge detection"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <Button
+        android:id="@+id/button12"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button11"
+        android:layout_centerHorizontal="true"
+        android:onClick="PIXELIZE"
+        android:padding="8dp"
+        android:text="Pixelize the area"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="412dp" />
+</RelativeLayout>
+

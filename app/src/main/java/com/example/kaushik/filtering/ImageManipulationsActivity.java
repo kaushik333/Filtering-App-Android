@@ -3,7 +3,9 @@ package com.example.kaushik.filtering;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -26,9 +29,15 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
@@ -313,13 +322,52 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
                 Imgproc.Sobel(grayInnerWindow, mIntermediateMat, CvType.CV_8U, 1, 1);
                 Core.convertScaleAbs(mIntermediateMat, mIntermediateMat, 10, 0);
                 Imgproc.cvtColor(mIntermediateMat, rgbaInnerWindow, Imgproc.COLOR_GRAY2BGRA, 4);
-                grayInnerWindow.release();
+                Core.flip(rgbaInnerWindow.t(), rgbaInnerWindow, 1);
+                Bitmap bmp  = Bitmap.createBitmap(rgbaInnerWindow.cols(), rgbaInnerWindow.rows(), Bitmap.Config.ARGB_8888);;
+                Utils.matToBitmap(rgbaInnerWindow, bmp);
+                String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+                File myDir = new File("/sdcard/Pictures");
+                myDir.mkdirs();
+                Random generator = new Random();
+                int n = 10000;
+                n = generator.nextInt(n);
+                String fname = "SobelEdgeDetection.jpg";
+                File file = new File(myDir, fname);
+                if (file.exists())
+                    file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
                 rgbaInnerWindow.release();
-                break;
+
 
             case ImageManipulationsActivity.VIEW_MODE_SEPIA:
                 rgbaInnerWindow = rgba.submat(top, top + height, left, left + width);
                 Core.transform(rgbaInnerWindow, rgbaInnerWindow, mSepiaKernel);
+                Core.flip(rgbaInnerWindow.t(), rgbaInnerWindow, 1);
+                bmp  = Bitmap.createBitmap(rgbaInnerWindow.cols(), rgbaInnerWindow.rows(), Bitmap.Config.ARGB_8888);;
+                Utils.matToBitmap(rgbaInnerWindow, bmp);
+                fname = "BlackAndWhite.jpg";
+                myDir = new File("/sdcard/Pictures");
+                myDir.mkdirs();
+                file = new File(myDir, fname);
+                if (file.exists())
+                    file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
                 rgbaInnerWindow.release();
                 break;
 
@@ -329,6 +377,26 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
                 Imgproc.resize(mZoomWindow, zoomCorner, zoomCorner.size());
                 org.opencv.core.Size wsize = mZoomWindow.size();
                 Imgproc.rectangle(mZoomWindow, new Point(1, 1), new Point(wsize.width - 2, wsize.height - 2), new Scalar(255, 0, 0, 255), 2);
+
+                Core.flip(zoomCorner.t(), zoomCorner, 1);
+                bmp  = Bitmap.createBitmap(zoomCorner.cols(), zoomCorner.rows(), Bitmap.Config.ARGB_8888);;
+                Utils.matToBitmap(zoomCorner, bmp);
+                fname = "ZoomedImage.jpg";
+                myDir = new File("/sdcard/Pictures");
+                myDir.mkdirs();
+                file = new File(myDir, fname);
+                if (file.exists())
+                    file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 zoomCorner.release();
                 mZoomWindow.release();
                 break;
@@ -337,6 +405,25 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
                 rgbaInnerWindow = rgba.submat(top, top + height, left, left + width);
                 Imgproc.resize(rgbaInnerWindow, mIntermediateMat, mSize0, 0.1, 0.1, Imgproc.INTER_NEAREST);
                 Imgproc.resize(mIntermediateMat, rgbaInnerWindow, rgbaInnerWindow.size(), 0., 0., Imgproc.INTER_NEAREST);
+
+                Core.flip(rgbaInnerWindow.t(), rgbaInnerWindow, 1);
+                bmp  = Bitmap.createBitmap(rgbaInnerWindow.cols(), rgbaInnerWindow.rows(), Bitmap.Config.ARGB_8888);;
+                Utils.matToBitmap(rgbaInnerWindow, bmp);
+                fname = "Pixelized.jpg";
+                myDir = new File("/sdcard/Pictures");
+                myDir.mkdirs();
+                file = new File(myDir, fname);
+                if (file.exists())
+                    file.delete();
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
                 rgbaInnerWindow.release();
                 break;
 

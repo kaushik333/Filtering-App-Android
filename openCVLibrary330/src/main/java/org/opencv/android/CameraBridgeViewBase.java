@@ -420,7 +420,7 @@ public abstract class CameraBridgeViewBase extends SurfaceView implements Surfac
                 canvas.drawColor(Color.parseColor("#8BC34A"), PorterDuff.Mode.SRC_IN);
                 //this is the rotation part
                 canvas.save();
-                canvas.rotate(0,  (canvas.getWidth()/ 2),(canvas.getHeight()/ 2));
+                canvas.rotate(90,  (canvas.getWidth()/ 2),(canvas.getHeight()/ 2));
 
                 if (mScale != 0) {
                     //mPaint.setFilterBitmap(true);
