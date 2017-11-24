@@ -345,14 +345,15 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
                     e.printStackTrace();
                 }
                 rgbaInnerWindow.release();
+             break;
 
 
             case ImageManipulationsActivity.VIEW_MODE_SEPIA:
-                rgbaInnerWindow = rgba.submat(top, top + height, left, left + width);
-                Core.transform(rgbaInnerWindow, rgbaInnerWindow, mSepiaKernel);
-                Core.flip(rgbaInnerWindow.t(), rgbaInnerWindow, 1);
-                bmp  = Bitmap.createBitmap(rgbaInnerWindow.cols(), rgbaInnerWindow.rows(), Bitmap.Config.ARGB_8888);;
-                Utils.matToBitmap(rgbaInnerWindow, bmp);
+                Mat rgbaInnerWindow1 = rgba.submat(top, top + height, left, left + width);
+                Core.transform(rgbaInnerWindow1, rgbaInnerWindow1, mSepiaKernel);
+                Core.flip(rgbaInnerWindow1.t(), rgbaInnerWindow1, 1);
+                bmp  = Bitmap.createBitmap(rgbaInnerWindow1.cols(), rgbaInnerWindow1.rows(), Bitmap.Config.ARGB_8888);;
+                Utils.matToBitmap(rgbaInnerWindow1, bmp);
                 fname = "BlackAndWhite.jpg";
                 myDir = new File("/sdcard/Pictures");
                 myDir.mkdirs();
@@ -368,7 +369,7 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-                rgbaInnerWindow.release();
+                rgbaInnerWindow1.release();
                 break;
 
             case ImageManipulationsActivity.VIEW_MODE_ZOOM:
