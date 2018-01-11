@@ -152,12 +152,6 @@ public class ImageManipulationsActivity extends Activity implements CvCameraView
 
     }
 
-    public void Next(View view)
-    {
-        Intent intent =new Intent(this, DispCoord.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onPause()
     {

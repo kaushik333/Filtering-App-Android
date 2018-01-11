@@ -54,7 +54,7 @@
         android:layout_centerHorizontal="true"
         android:onClick="SEPTA"
         android:padding="8dp"
-        android:text="SEPTA"
+        android:text="GRAYSCALE"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="224dp" />
 
@@ -97,5 +97,16 @@
         android:text="Pixelize the area"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="412dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginBottom="27dp"
+        android:text="Assignment Part B"
+        android:onClick="Next"/>
 </RelativeLayout>
 
